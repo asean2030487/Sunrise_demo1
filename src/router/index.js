@@ -19,9 +19,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: 'Demo',
+    path: '/Demo',
     name: 'Demo',
-    component: () => import('../views/Demo/Demo1.vue')
+    component: () => import('@/views/Demo/Demo1.vue')
   }
 ]
 
@@ -30,5 +30,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
 export default router
+
+

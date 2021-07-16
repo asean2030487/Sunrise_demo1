@@ -1,24 +1,16 @@
-# project
+# 日陞空間資訊 技術移轉課程 Demo
 
-## Project setup
+## 安裝套件
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 啟動專案
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+```text
+// 使用套件
+Element UI
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
