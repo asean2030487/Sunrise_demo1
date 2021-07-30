@@ -18,7 +18,7 @@
                                 >
                                 <!-- TODO 改"新增"按鈕的顏色 -->
                                 <el-button
-                                    type="primary"
+                                    type="info"
                                     size="medium"
                                     style="margin-left: 0.5rem"
                                     @click="post_dialog = true"
