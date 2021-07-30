@@ -11,7 +11,7 @@
                     <el-card class="box-card">
                         <el-row>
                             <el-col :span="24" style="text-align: left">
-                                <h3>請輸入關鍵字</h3>
+                                <h3>請輸入關鍵字:</h3>
                                 <el-input v-model="key_words" placeholder="請輸入關鍵字" style="width: 60%"></el-input>
                                 <el-button type="primary" size="medium" style="margin-left: 0.5rem" @click="Get"
                                     >查詢</el-button
