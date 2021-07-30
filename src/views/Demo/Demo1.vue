@@ -47,7 +47,7 @@
                                     <el-table-column label="操作">
                                         <template slot-scope="scope">
                                             <el-button
-                                                type="warning"
+                                                type="success"
                                                 size="small"
                                                 @click=";[(patch_dialog = true), (index = scope.$index)]"
                                                 >編輯</el-button
