@@ -139,8 +139,8 @@ export default {
             // TODO 查詢需要 啟動/關閉 loading效果
             // 如果有關鍵字
             let api = ''
-            if (this.key_words) api = `https://220.132.96.239/sunrise_demo1_bk/api/get_books/${this.key_words}`
-            else api = `https://220.132.96.239/sunrise_demo1_bk/api/get_books`
+            if (this.key_words) api = `http://211.72.231.157/Sunrise_demo1_bk/api/get_books/${this.key_words}`
+            else api = `http://211.72.231.157/Sunrise_demo1_bk/api/get_books`
             this.$http.get(api).then((res) => {
                 // 賦值
                 this.result = res.data.data
@@ -150,7 +150,7 @@ export default {
          * 新增書本名稱
          */
         Post() {
-            this.$http.post(`https://220.132.96.239/sunrise_demo1_bk/api/post_books`, this.post_data).then((res) => {
+            this.$http.post(`http://211.72.231.157/Sunrise_demo1_bk/api/post_books`, this.post_data).then((res) => {
                 // 判斷成功或失敗
                 if (res.data.code) {
                     alert('新增成功!')
@@ -167,7 +167,7 @@ export default {
          * 刪除書本
          */
         Delete(id = '') {
-            this.$http.get(`https://220.132.96.239/sunrise_demo1_bk/api/delete_books/${id}`).then((res) => {
+            this.$http.get(`http://211.72.231.157/Sunrise_demo1_bk/api/delete_books/${id}`).then((res) => {
                 // 判斷成功或失敗
                 if (res.data.code) {
                     alert('刪除成功!')
@@ -183,7 +183,7 @@ export default {
          */
         Patch() {
             this.$http
-                .post(`https://220.132.96.239/sunrise_demo1_bk/api/patch_books`, this.result[this.index])
+                .post(`http://211.72.231.157/Sunrise_demo1_bk/api/patch_books`, this.result[this.index])
                 .then((res) => {
                     // 判斷成功或失敗
                     if (res.data.code) {
