@@ -20,6 +20,7 @@
                         placeholder="請輸入關鍵字"
                         style="display:inline"
                     ></el-input>
+                    <el-button type="info" class="gourp_button" @click="insertDialogVisible = true">新增</el-button>
                     <el-button type="primary" class="gourp_button" @click="Get_Question_List">送出</el-button>
                 </div>
                 <!-- 結果區塊 -->
@@ -48,7 +49,7 @@
                             @click=";[Get_Answer(d.q_id), (editDialogVisible = true)]"
                             >編輯</el-button
                         >
-                        <el-button type="danger" size="small">刪除</el-button>
+                        <el-button type="danger" size="small" @click="Delete_Hard(d.q_id)">刪除</el-button>
                     </el-col>
                 </el-row>
             </el-card>
@@ -62,7 +63,10 @@
                 </el-col>
                 <el-col :span="24">
                     <h3>類型:</h3>
-                    <el-input v-model="insert.type" placeholder="請輸入類型"></el-input>
+                    <el-select v-model="detail.type" placeholder="請選擇類型" style="width:100%">
+                        <el-option v-for="(item, index) in type" :key="index" :label="item.type" :value="item.type">
+                        </el-option>
+                    </el-select>
                 </el-col>
                 <el-col :span="24">
                     <h3>答案:</h3>
@@ -87,7 +91,10 @@
                 </el-col>
                 <el-col :span="24">
                     <h3>類型:</h3>
-                    <el-input v-model="detail.type" placeholder="請輸入類型"></el-input>
+                    <el-select v-model="detail.type" placeholder="請選擇類型" style="width:100%">
+                        <el-option v-for="(item, index) in type" :key="index" :label="item.type" :value="item.type">
+                        </el-option>
+                    </el-select>
                 </el-col>
                 <el-col :span="24">
                     <h3>答案:</h3>
@@ -112,6 +119,8 @@ export default {
     // 變數區塊
     data() {
         return {
+            // 類型清單
+            type: [],
             // Server網址
             api: 'http://211.72.231.157/Sunrise_demo1_bk/api/',
             // loading變數
@@ -184,11 +193,14 @@ export default {
             this.loading = true
             // 呼叫API
             this.axios.post(`${this.api}Insert_QA`, this.insert).then((res) => {
-                console.log('查詢結果:　', res)
+                console.log('結果:　', res)
                 // 賦值
                 this.detail = res.data.data
                 // 關閉loading
                 this.loading = false
+                this.insertDialogVisible = false
+                // 查詢
+                this.Get_Question_List()
             })
         },
         /**
@@ -203,9 +215,47 @@ export default {
                 // 關閉loading
                 this.loading = false
                 this.editDialogVisible = false
+                // 查詢
                 this.Get_Question_List()
             })
+        },
+        /**
+         * 刪除問答
+         */
+        Delete_Hard(id = '') {
+            this.$confirm('確定要刪除此筆資料嗎', '提示', {
+                confirmButtonText: '確定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                // 啟動loading
+                this.loading = true
+                // 呼叫API
+                this.axios.delete(`${this.api}Delete_Hard/${id}`).then((res) => {
+                    console.log('刪除:　', res)
+                    // 關閉loading
+                    this.loading = false
+                    this.editDialogVisible = false
+                    // 查詢
+                    this.Get_Question_List()
+                })
+            })
+        },
+        // 取得類型清單 (採用async非同步)
+        async Get_Type_List() {
+            // 呼叫API
+            await this.axios.get(`${this.api}Get_Type_List`).then((res) => {
+                console.log('類別查詢結果:　', res)
+                // 賦值
+                this.type = res.data.data
+            })
         }
+    },
+    // mounted hook
+    async mounted() {
+        // 取得類別
+        await this.Get_Type_List()
+        console.log('類別清單載入結束!')
     }
 }
 </script>
