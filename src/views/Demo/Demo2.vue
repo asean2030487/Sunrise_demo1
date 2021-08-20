@@ -21,7 +21,7 @@
                         style="display:inline"
                     ></el-input>
                     <el-button type="info" class="gourp_button" @click="insertDialogVisible = true">新增</el-button>
-                    <el-button type="primary" class="gourp_button" @click="Get_Question_List">送出</el-button>
+                    <el-button type="primary" class="gourp_button" @click="Get_Question_List">查詢</el-button>
                 </div>
                 <!-- 結果區塊 -->
                 <el-row style="text-align:left">
